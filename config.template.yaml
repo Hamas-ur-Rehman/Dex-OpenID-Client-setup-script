@@ -20,12 +20,21 @@ oauth2:
   accessTokenLifetime: "10m"
   idTokenLifetime: "10m"
 
-connectors: []
+connectors:
+  - type: local
+    id: local
+    name: "Local"
+    config:
+      staticPasswords:
+        - email: "${DEX_ADMIN_EMAIL}"
+          hash: "${DEX_ADMIN_PASSWORD_HASH}"
+          username: "${DEX_ADMIN_USERNAME}"
+          userID: "${DEX_ADMIN_USERID}"
 
+# M2M clients: client_credentials
 staticClients:
   - id: "${DEX_CLIENT_ID}"
     name: "${DEX_CLIENT_NAME}"
     secret: "${DEX_CLIENT_SECRET}"
     grantTypes: ["client_credentials"]
     redirectURIs: []
-
