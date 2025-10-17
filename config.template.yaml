@@ -8,30 +8,32 @@ storage:
     user: ${DEX_DB_USER}
     password: ${DEX_DB_PASSWORD}
     database: ${DEX_DB_NAME}
-    ssl:
-      mode: disable
 
 web:
   http: 5556
+
+logger:
+  level: "info"
 
 oauth2:
   skipApprovalScreen: true
   responseTypes: ["token", "id_token", "code"]
   accessTokenLifetime: "10m"
   idTokenLifetime: "10m"
+  # enable password grant to use the local password DB
+  passwordConnector: local
 
-connectors:
-  - type: local
-    id: local
-    name: "Local"
-    config:
-      staticPasswords:
-        - email: "${DEX_ADMIN_EMAIL}"
-          hash: "${DEX_ADMIN_PASSWORD_HASH}"
-          username: "${DEX_ADMIN_USERNAME}"
-          userID: "${DEX_ADMIN_USERID}"
+# Enable Dex built-in password DB so staticPasswords works
+enablePasswordDB: true
 
-# M2M clients: client_credentials
+# Static user(s) for Dex to initialize. Provide bcrypt hash via env var.
+staticPasswords:
+  - email: "${DEX_ADMIN_EMAIL}"
+    hash: "${DEX_ADMIN_PASSWORD_HASH}"
+    username: "${DEX_ADMIN_USERNAME}"
+    userID: "${DEX_ADMIN_USERID}"
+
+# M2M clients: client_credentials (unchanged)
 staticClients:
   - id: "${DEX_CLIENT_ID}"
     name: "${DEX_CLIENT_NAME}"
