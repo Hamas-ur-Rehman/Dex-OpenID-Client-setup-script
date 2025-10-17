@@ -3,7 +3,13 @@ issuer: "${DEX_ISSUER}"
 storage:
   type: "postgres"
   config:
-    connectionString: "${DATABASE_URL}"
+    host: ${DEX_DB_HOST}
+    port: ${DEX_DB_PORT}
+    user: ${DEX_DB_USER}
+    password: ${DEX_DB_PASSWORD}
+    database: ${DEX_DB_NAME}
+    ssl:
+      mode: disable
 
 web:
   http: 5556
