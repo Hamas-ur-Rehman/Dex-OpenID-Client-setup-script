@@ -9,5 +9,6 @@ RUN apk add --no-cache gettext
 # copy template
 COPY config.template.yaml /etc/dex/config.template.yaml
 
+EXPOSE 5556
 # Make an entrypoint that substitutes env vars at container start then runs dex
 ENTRYPOINT ["/bin/sh", "-c", "envsubst < /etc/dex/config.template.yaml > /etc/dex/config.yaml && /usr/local/bin/dex serve /etc/dex/config.yaml"]

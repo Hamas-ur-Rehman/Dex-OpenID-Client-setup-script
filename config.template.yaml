@@ -12,7 +12,7 @@ storage:
       mode: disable
 
 web:
-  http: 5556
+  http: 0.0.0.0:5556
 
 logger:
   level: "info"
