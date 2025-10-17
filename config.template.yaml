@@ -8,6 +8,8 @@ storage:
     user: ${DEX_DB_USER}
     password: ${DEX_DB_PASSWORD}
     database: ${DEX_DB_NAME}
+    ssl:
+      mode: disable
 
 web:
   http: 5556
