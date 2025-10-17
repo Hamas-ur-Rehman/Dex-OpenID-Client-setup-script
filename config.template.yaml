@@ -1,0 +1,25 @@
+issuer: "${DEX_ISSUER}"
+
+storage:
+  type: "postgres"
+  config:
+    connectionString: "${DATABASE_URL}"
+
+web:
+  http: 5556
+
+oauth2:
+  skipApprovalScreen: true
+  responseTypes: ["token", "id_token", "code"]
+  accessTokenLifetime: "10m"
+  idTokenLifetime: "10m"
+
+connectors: []
+
+staticClients:
+  - id: "${DEX_CLIENT_ID}"
+    name: "${DEX_CLIENT_NAME}"
+    secret: "${DEX_CLIENT_SECRET}"
+    grantTypes: ["client_credentials"]
+    redirectURIs: []
+
